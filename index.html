@@ -7,11 +7,15 @@
 
 <body>
     <div id="app">
-        <h1>5e classes</h1>
-        <ul>
-            <li v-for="obj in myClasses" v-text="obj.name"></li>
-        </ul>
-        <button v-on:click="fetchREST">Click me</button>
+        <h1>5e Characters</h1>
+        <select v-model="classSelection">
+            <option v-for="name in classNames" v-text="name"></option>
+        </select>
+        <span>Selected: {{ classSelection }}</span>
+        <select v-model="raceSelection">
+            <option v-for="name in raceNames" v-text="name"></option>
+        </select>
+        <span>Selected: {{ raceSelection }}</span>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
     <script text="type/javascript" src="script.js"></script>
