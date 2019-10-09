@@ -1,12 +1,12 @@
 var app = new Vue({
     el: '#app',
     data: {
-        classNames: [],
-        raceNames: [],
-        classURLs: [],
-        raceURLs: [],
+        myClasses: [],
+        myRaces: [],
+        mySubraces: [],
         classSelection: "",
         raceSelection: "",
+<<<<<<< HEAD
         cors: "https://cors-anywhere.herokuapp.com/",
         classes: [
             { name: 'barbarian', stat_array: [] },
@@ -27,39 +27,89 @@ var app = new Vue({
         ],
         //Yes, this is extremely arbitrary
         base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR']
+=======
+        subraceSelection: "",
+        cors: "https://cors-anywhere.herokuapp.com/"
+>>>>>>> a109491443072e51233953edd9342d094afc0b34
     },
     methods: {
         fetchClasses() {
-            const url = this.cors + "http://dnd5eapi.co/api/classes/";
+            let url = this.cors + "http://dnd5eapi.co/api/classes/";
             fetch(url)
                 .then((response) => {
                     return (response.json());
                 })
                 .then((json) => {
                     console.log(json);
-                    console.log(json.results);
                     for (let i = 0; i < json.results.length; i++) {
-                        console.log(json.results[i]);
-                        this.classNames.push(json.results[i].name);
-                        this.classURLs.push(json.results[i].url);
+                        let sURL = this.cors + json.results[i].url;
+                        fetch(sURL)
+                            .then((response) => {
+                                return (response.json());
+                            })
+                            .then((json) => {
+                                console.log(json);
+                                this.myClasses.push({ name: json.name });
+                            });
+
                     }
                 });
         },
         fetchRaces() {
-            const url = this.cors + "http://dnd5eapi.co/api/races/";
+            let url = this.cors + "http://dnd5eapi.co/api/races/";
             fetch(url)
                 .then((response) => {
                     return (response.json());
                 })
                 .then((json) => {
                     console.log(json);
-                    console.log(json.results);
                     for (let i = 0; i < json.results.length; i++) {
-                        console.log(json.results[i]);
-                        this.raceNames.push(json.results[i].name);
-                        this.raceURLs.push(json.results[i].url);
+                        let sURL = this.cors + json.results[i].url;
+                        fetch(sURL)
+                            .then((response) => {
+                                return (response.json());
+                            })
+                            .then((json) => {
+                                console.log(json);
+                                this.myRaces.push({ name: json.name, subraces: json.subraces });
+                            });
+
                     }
                 });
+        },
+        fetchSubraces() {
+            for (let i = 0; i < this.myRaces.length; i++) {
+                if (this.myRaces[i].name == this.raceSelection) {
+                    if (this.myRaces[i].subraces.length == 0) {
+                        this.mymySuraces.push(this.myRaces[i].name);
+                    }
+                    else {
+                        for (let j = 0; j < this.myRaces[i].subraces.length; j++) {
+                            this.mySubraces.push(this.myRaces[i].subraces[j]);
+                        }
+                    }
+                }
+            }
+            /*let url = this.cors + "http://dnd5eapi.co/api/races/";
+            fetch(url)
+                .then((response) => {
+                    return (response.json());
+                })
+                .then((json) => {
+                    console.log(json);
+                    for (let i = 0; i < json.results.length; i++) {
+                        let sURL = this.cors + json.results[i].url;
+                        fetch(sURL)
+                            .then((response) => {
+                                return (response.json());
+                            })
+                            .then((json) => {
+                                console.log(json);
+                                this.myRaces.push({ name: json.name });
+                            });
+
+                    }
+                });*/
         },
     },
     created: function() {
