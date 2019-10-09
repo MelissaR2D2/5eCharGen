@@ -26,7 +26,6 @@ var app = new Vue({
         ],
         //Yes, this is extremely arbitrary
         base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR'],
-        subraceSelection: "",
     },
     methods: {
         fetchClasses() {
@@ -95,6 +94,9 @@ var app = new Vue({
             }
         },
         calculateStats() {
+            if (this.raceSelection == "" || this.subraceSelection == "" || this.classSelection == "") {
+                alert("Please make sure you have selected a race, subrace, and class.");
+            }
             //changes bonus arrays to match racial bonuses
             for (let i = 0; i < this.myRaces.length; i++) {
                 if (this.myRaces[i].name == this.raceSelection) {

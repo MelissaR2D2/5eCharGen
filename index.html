@@ -14,36 +14,46 @@
     <div id="app">
         <h1 id="head-title">Ability Score Generator</h1>
         <h2 id="sub-title">for 5e D&D Characters</h2>
-        <p id="explanation">It's easy! Choose a race and class, and this generator will automatically produce optimized ability scores for your character, with racial bonuses already added.<br><br>The starting ability scores are from the standard set provided in the player's
-            handbook.
-        </p>
-        <p>
-            <span>Race: </span>
-            <select v-model="raceSelection" @change="fetchSubraces">
-                <option disabled value="">Choose a race</option>
-                <option v-for="myRace in myRaces" v-text="myRace.name"></option>
-            </select>
-            <span>Selected: {{ raceSelection }}</span>
-        </p>
-        <p>
-            <span>Sub-race: </span>
-            <select v-model="subraceSelection">
-                <option disabled value="">Choose a sub-race</option>
-                <option v-for="mySubrace in mySubraces" v-text="mySubrace.name"></option>
-            </select>
-            <span>Selected: {{ subraceSelection }}</span>
-        </p>
-        <p>
-            <span>Class: </span>
-            <select v-model="classSelection">
-                <option disabled value="">Choose a class</option>
-                <option v-for="myClass in myClasses" v-text="myClass.name"></option>
-            </select>
-            <span>Selected: {{ classSelection }}</span>
-        </p>
-        <p>
-            <button v-on:click="calculateStats">Submit</button>
-        </p>
+        <div id="main">
+            <p id="explanation">It's easy! Choose a race and class, and this generator will automatically produce optimized ability scores for your character, with racial bonuses already added.<br><br>For the starting ability scores, we used the standard set provided in
+                the player's handbook.
+            </p>
+            <div class="row">
+                <div class="column">
+                    <p>
+                        <span>Race: </span>
+                        <select v-model="raceSelection" @change="fetchSubraces">
+                        <option disabled value="">Choose a race</option>
+                        <option v-for="myRace in myRaces" v-text="myRace.name"></option>
+                    </select>
+                    </p>
+                </div>
+                <div class="column">
+                    <p>
+                        <span>Sub-race: </span>
+                        <select v-model="subraceSelection">
+                        <option disabled value="">Choose a sub-race</option>
+                        <option v-for="mySubrace in mySubraces" v-text="mySubrace.name"></option>
+                    </select>
+                    </p>
+                </div>
+                <div class="column">
+                    <p>
+                        <span>Class: </span>
+                        <select v-model="classSelection">
+                        <option disabled value="">Choose a class</option>
+                        <option v-for="myClass in myClasses" v-text="myClass.name"></option>
+                    </select>
+                    </p>
+                </div>
+            </div>
+            <p id="submit">
+                <button v-on:click="calculateStats">Calculate Ability Scores</button>
+            </p>
+        </div>
+        <div id="footer">Website designed and created by Melissa Robertson and Tyla Merrill, October 2019. The D&D 5e API found <a href="https://web.archive.org/web/20120606024602/http://aterribleidea.com/108-terrible-character-portraits-gallery/">here</a> was used in
+            the creation of this project.
+            <a href="https://github.com/MelissaR2D2/5eCharGen">Click here for the GitHub repository.</a></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
     <script text="type/javascript" src="script.js"></script>
