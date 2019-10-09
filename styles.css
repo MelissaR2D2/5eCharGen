@@ -1,0 +1,21 @@
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#head-title {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+#sub-title {
+    text-align: center;
+    margin-top: 0px;
+}
+
+#explanation {
+    width: 70%;
+    margin: auto;
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
+}

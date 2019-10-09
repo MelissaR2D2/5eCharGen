@@ -2,12 +2,21 @@
 <html>
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title>5e Ability Score Generator</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div id="app">
-        <h1>5e Characters</h1>
+        <h1 id="head-title">Ability Score Generator</h1>
+        <h2 id="sub-title">for 5e D&D Characters</h2>
+        <p id="explanation">It's easy! Choose a race and class, and this generator will automatically produce optimized ability scores for your character, with racial bonuses already added.<br><br>The starting ability scores are from the standard set provided in the player's
+            handbook.
+        </p>
         <p>
             <span>Race: </span>
             <select v-model="raceSelection" @change="fetchSubraces">
