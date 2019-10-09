@@ -6,11 +6,8 @@ var app = new Vue({
         mySubraces: [],
         classSelection: "",
         raceSelection: "",
-<<<<<<< HEAD
         cors: "https://cors-anywhere.herokuapp.com/",
-        classes: [
-            { name: 'barbarian', stat_array: [] },
-        ],
+        classes: [],
         main_stats: [
             { name: 'barbarian', stats: ['STR', 'CON'] },
             { name: 'bard', stats: ['CHA', 'DEX'] },
@@ -26,11 +23,9 @@ var app = new Vue({
             { name: 'wizard', stats: ['INT', 'DEX'] },
         ],
         //Yes, this is extremely arbitrary
-        base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR']
-=======
+        base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR'],
         subraceSelection: "",
         cors: "https://cors-anywhere.herokuapp.com/"
->>>>>>> a109491443072e51233953edd9342d094afc0b34
     },
     methods: {
         fetchClasses() {
