@@ -9,7 +9,7 @@ var app = new Vue({
         raceSelection: "",
         cors: "https://cors-anywhere.herokuapp.com/"
     },
-    computed: {
+    methods: {
         fetchClasses() {
             const url = this.cors + "http://dnd5eapi.co/api/classes/";
             fetch(url)
@@ -43,4 +43,8 @@ var app = new Vue({
                 });
         },
     },
+    created: function() {
+        this.fetchClasses();
+        this.fetchRaces();
+    }
 });
