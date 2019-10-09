@@ -7,7 +7,26 @@ var app = new Vue({
         raceURLs: [],
         classSelection: "",
         raceSelection: "",
-        cors: "https://cors-anywhere.herokuapp.com/"
+        cors: "https://cors-anywhere.herokuapp.com/",
+        classes: [
+            { name: 'barbarian', stat_array: [] },
+        ],
+        main_stats: [
+            { name: 'barbarian', stats: ['STR', 'CON'] },
+            { name: 'bard', stats: ['CHA', 'DEX'] },
+            { name: 'cleric', stats: ['WIS', 'CON'] },
+            { name: 'druid', stats: ['WIS', 'CON'] },
+            { name: 'fighter', stats: ['STR', 'CON'] },
+            { name: 'monk', stats: ['DEX', 'WIS'] },
+            { name: 'paladin', stats: ['STR', 'CHA'] },
+            { name: 'ranger', stats: ['DEX', 'WIS'] },
+            { name: 'rogue', stats: ['DEX', 'INT'] },
+            { name: 'sorcerer', stats: ['CHA', 'CON'] },
+            { name: 'warlock', stats: ['CHA', 'CON'] },
+            { name: 'wizard', stats: ['INT', 'DEX'] },
+        ],
+        //Yes, this is extremely arbitrary
+        base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR']
     },
     methods: {
         fetchClasses() {
