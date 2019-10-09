@@ -6,8 +6,10 @@ var app = new Vue({
         mySubraces: [],
         classSelection: "",
         raceSelection: "",
+        subraceSelection: "",
+        raceBonus: [0, 0, 0, 0, 0, 0],
+        subraceBonus: [0, 0, 0, 0, 0, 0],
         cors: "https://cors-anywhere.herokuapp.com/",
-        classes: [],
         main_stats: [
             { name: 'barbarian', stats: ['STR', 'CON'] },
             { name: 'bard', stats: ['CHA', 'DEX'] },
@@ -25,7 +27,6 @@ var app = new Vue({
         //Yes, this is extremely arbitrary
         base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR'],
         subraceSelection: "",
-        cors: "https://cors-anywhere.herokuapp.com/"
     },
     methods: {
         fetchClasses() {
@@ -66,7 +67,7 @@ var app = new Vue({
                             })
                             .then((json) => {
                                 console.log(json);
-                                this.myRaces.push({ name: json.name, subraces: json.subraces });
+                                this.myRaces.push({ name: json.name, subraces: json.subraces, ability_bonuses: json.ability_bonuses });
                             });
 
                     }
@@ -76,35 +77,37 @@ var app = new Vue({
             for (let i = 0; i < this.myRaces.length; i++) {
                 if (this.myRaces[i].name == this.raceSelection) {
                     if (this.myRaces[i].subraces.length == 0) {
-                        this.mymySuraces.push(this.myRaces[i].name);
+                        this.mySubraces.push(this.myRaces[i].name);
                     }
                     else {
                         for (let j = 0; j < this.myRaces[i].subraces.length; j++) {
-                            this.mySubraces.push(this.myRaces[i].subraces[j]);
+                            let sURL = this.cors + this.myRaces[i].subraces[j].url;
+                            fetch(sURL)
+                                .then((response) => {
+                                    return (response.json());
+                                })
+                                .then((json) => {
+                                    this.mySubraces.push({ name: json.name, ability_bonuses: json.ability_bonuses });
+                                });
                         }
                     }
                 }
             }
-            /*let url = this.cors + "http://dnd5eapi.co/api/races/";
-            fetch(url)
-                .then((response) => {
-                    return (response.json());
-                })
-                .then((json) => {
-                    console.log(json);
-                    for (let i = 0; i < json.results.length; i++) {
-                        let sURL = this.cors + json.results[i].url;
-                        fetch(sURL)
-                            .then((response) => {
-                                return (response.json());
-                            })
-                            .then((json) => {
-                                console.log(json);
-                                this.myRaces.push({ name: json.name });
-                            });
-
+        },
+        calculateStats() {
+            //changes bonus arrays to match racial bonuses
+            for (let i = 0; i < this.myRaces.length; i++) {
+                if (this.myRaces[i].name == this.raceSelection) {
+                    this.raceBonus = this.myRaces[i].ability_bonuses;
+                    if (this.myRaces[i].subraces.length != 0) {
+                        for (let j = 0; j < this.mySubraces.length; j++) {
+                            if (this.mySubraces[j].name == this.subraceSelection) {
+                                this.subraceBonus = this.mySubraces[j].ability_bonuses;
+                            }
+                        }
                     }
-                });*/
+                }
+            }
         },
     },
     created: function() {

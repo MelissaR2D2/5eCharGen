@@ -22,7 +22,7 @@
                 <option disabled value="">Choose a sub-race</option>
                 <option v-for="mySubrace in mySubraces" v-text="mySubrace.name"></option>
             </select>
-            <span>Selected: {{ raceSelection }}</span>
+            <span>Selected: {{ subraceSelection }}</span>
         </p>
         <p>
             <span>Class: </span>
@@ -31,6 +31,9 @@
                 <option v-for="myClass in myClasses" v-text="myClass.name"></option>
             </select>
             <span>Selected: {{ classSelection }}</span>
+        </p>
+        <p>
+            <button v-on:click="calculateStats">Submit</button>
         </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
