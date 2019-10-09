@@ -6,38 +6,15 @@
 </head>
 
 <body>
-    <div id="root">
+    <div id="app">
         <h1>5e classes</h1>
         <ul>
-            <li v-for="obj in getInfo" v-text="obj.name"></li>
+            <li v-for="obj in myClasses" v-text="obj.name"></li>
         </ul>
+        <button v-on:click="fetchREST">Click me</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
-    <script>
-        //this is me just trying to list some of the results of the json we get from the API
-        //getting the json works (console.log(json) returns the right object) but I can't figure out how to put it into classes data
-        //also we should probably split this off into script.js b/c we're going to have a lot of Javascript, I just haven't done that yet.
-        var app = new Vue({
-            el: "#root",
-            data: {
-                classes: [{ name: "test" }]
-            },
-            computed: {
-                getInfo() {
-                    var cors = "https://cors-anywhere.herokuapp.com/";
-                    const url = cors + "http://dnd5eapi.co/api/classes/";
-                    fetch(url)
-                        .then(function(response) {
-                            return response.json();
-                        }).then(function(json) {
-                            console.log(json);
-                            return this.classes.push(json.results);
-                        });
-                }
-
-            }
-        })
-    </script>
+    <script text="type/javascript" src="script.js"></script>
 
 </body>
 
