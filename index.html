@@ -10,9 +10,17 @@
         <h1>5e Characters</h1>
         <p>
             <span>Race: </span>
-            <select v-model="raceSelection">
+            <select v-model="raceSelection" @change="fetchSubraces">
                 <option disabled value="">Choose a race</option>
-                <option v-for="name in raceNames" v-text="name"></option>
+                <option v-for="myRace in myRaces" v-text="myRace.name"></option>
+            </select>
+            <span>Selected: {{ raceSelection }}</span>
+        </p>
+        <p>
+            <span>Sub-race: </span>
+            <select v-model="subraceSelection">
+                <option disabled value="">Choose a sub-race</option>
+                <option v-for="mySubrace in mySubraces" v-text="mySubrace.name"></option>
             </select>
             <span>Selected: {{ raceSelection }}</span>
         </p>
@@ -20,7 +28,7 @@
             <span>Class: </span>
             <select v-model="classSelection">
                 <option disabled value="">Choose a class</option>
-                <option v-for="name in classNames" v-text="name"></option>
+                <option v-for="myClass in myClasses" v-text="myClass.name"></option>
             </select>
             <span>Selected: {{ classSelection }}</span>
         </p>
