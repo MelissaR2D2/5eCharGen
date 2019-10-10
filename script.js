@@ -26,7 +26,7 @@ var app = new Vue({
             { name: 'Wizard', stats: ['INT', 'DEX', 'CON', 'WIS', 'CHA', 'STR'] },
         ],
         //Yes, this is extremely arbitrary
-        base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR'],
+        base_order: ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'],
         std_array: [15, 14, 13, 12, 10, 8],
         charStats: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
     },
@@ -134,8 +134,13 @@ var app = new Vue({
                 console.log(classOrder[i]);
                 this.charStats[classOrder[i]] = this.std_array[i];
             }
+            for (let i = 0; i < this.base_order.length; i++) {
+                this.charStats[this.base_order[i]] += this.raceBonus[i];
+                this.charStats[this.base_order[i]] += this.subraceBonus[i];
+            }
+            console.log(this.raceBonus);
+            console.log(this.subraceBonus);
             console.log(this.charStats);
-
 
         },
     },
