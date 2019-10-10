@@ -11,22 +11,24 @@ var app = new Vue({
         raceBonus: [0, 0, 0, 0, 0, 0],
         subraceBonus: [0, 0, 0, 0, 0, 0],
         cors: "https://cors-anywhere.herokuapp.com/",
-        main_stats: [
-            { name: 'barbarian', stats: ['STR', 'CON'] },
-            { name: 'bard', stats: ['CHA', 'DEX'] },
-            { name: 'cleric', stats: ['WIS', 'CON'] },
-            { name: 'druid', stats: ['WIS', 'CON'] },
-            { name: 'fighter', stats: ['STR', 'CON'] },
-            { name: 'monk', stats: ['DEX', 'WIS'] },
-            { name: 'paladin', stats: ['STR', 'CHA'] },
-            { name: 'ranger', stats: ['DEX', 'WIS'] },
-            { name: 'rogue', stats: ['DEX', 'INT'] },
-            { name: 'sorcerer', stats: ['CHA', 'CON'] },
-            { name: 'warlock', stats: ['CHA', 'CON'] },
-            { name: 'wizard', stats: ['INT', 'DEX'] },
+        stats_orders: [
+            { name: 'Barbarian', stats: ['STR', 'CON', 'DEX', 'WIS', 'CHA', 'INT'] },
+            { name: 'Bard', stats: ['CHA', 'DEX', 'CON', 'WIS', 'INT', 'STR'] },
+            { name: 'Cleric', stats: ['WIS', 'CON', 'DEX', 'CHA', 'INT', 'STR'] },
+            { name: 'Druid', stats: ['WIS', 'CON', 'DEX', 'CHA', 'INT', 'STR'] },
+            { name: 'Fighter', stats: ['STR', 'CON', 'INT', 'DEX', 'WIS', 'CHA'] },
+            { name: 'Monk', stats: ['DEX', 'WIS', 'CON', 'STR', 'INT', 'CHA', ] },
+            { name: 'Paladin', stats: ['STR', 'CHA', 'CON', 'WIS', 'DEX', 'INT'] },
+            { name: 'Ranger', stats: ['DEX', 'WIS', 'CON', 'INT', 'STR', 'CHA'] },
+            { name: 'Rogue', stats: ['DEX', 'INT', 'CON', 'WIS', 'CHA', 'STR'] },
+            { name: 'Sorcerer', stats: ['CHA', 'CON', 'DEX', 'INT', 'WIS', 'STR'] },
+            { name: 'Warlock', stats: ['CHA', 'CON', 'DEX', 'WIS', 'INT', 'STR'] },
+            { name: 'Wizard', stats: ['INT', 'DEX', 'CON', 'WIS', 'CHA', 'STR'] },
         ],
         //Yes, this is extremely arbitrary
         base_order: ['CON', 'DEX', 'WIS', 'CHA', 'INT', 'STR'],
+        std_array: [15, 14, 13, 12, 10, 8],
+        charStats: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
     },
     methods: {
         fetchClasses() {
@@ -122,6 +124,18 @@ var app = new Vue({
                     }
                 }
             }
+            var classOrder = this.stats_orders.filter((currClass) => {
+                return currClass.name === this.classSelection;
+            });
+            var classOrder = classOrder[0].stats;
+            console.log(classOrder);
+            for (let i = 0; i < classOrder.length; i++) {
+                console.log(classOrder[i]);
+                this.charStats[classOrder[i]] = this.std_array[i];
+            }
+            console.log(this.charStats);
+
+
         },
     },
     created: function() {
