@@ -1,6 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
+        fail: false,
         myClasses: [],
         myRaces: [],
         mySubraces: [],
@@ -82,15 +83,23 @@ var app = new Vue({
                     }
                     else {
                         for (let j = 0; j < this.myRaces[i].subraces.length; j++) {
-                            let sURL = this.cors + this.myRaces[i].subraces[j].url;
-                            fetch(sURL)
-                                .then((response) => {
-                                    return (response.json());
-                                })
-                                .then((json) => {
-                                    console.log(json);
-                                    this.mySubraces.push({ name: json.name, ability_bonuses: json.ability_bonuses });
-                                });
+                            if (!this.fail) {
+                                let sURL = this.cors + this.myRaces[i].subraces[j].url;
+                                fetch(sURL)
+                                    .then((response) => {
+                                        return (response.json());
+                                    })
+                                    .then((json) => {
+                                        if (json == null) {
+                                            if (!this.fail) {
+                                                alert("There was an error with the " + this.myRaces[i].name + " API. Please try a different race.");
+                                            }
+                                            this.fail = true;
+                                        }
+                                        console.log(json);
+                                        this.mySubraces.push({ name: json.name, ability_bonuses: json.ability_bonuses });
+                                    });
+                            }
                         }
                     }
                 }
