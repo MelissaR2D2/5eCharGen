@@ -73,10 +73,12 @@ var app = new Vue({
                 });
         },
         fetchSubraces() {
+            console.log("it was called");
+            this.mySubraces = [];
             for (let i = 0; i < this.myRaces.length; i++) {
                 if (this.myRaces[i].name == this.raceSelection) {
                     if (this.myRaces[i].subraces.length == 0) {
-                        this.mySubraces.push(this.myRaces[i].name);
+                        this.mySubraces.push({ name: this.myRaces[i].name, ability_bonuses: [0, 0, 0, 0, 0, 0] });
                     }
                     else {
                         for (let j = 0; j < this.myRaces[i].subraces.length; j++) {
@@ -86,6 +88,7 @@ var app = new Vue({
                                     return (response.json());
                                 })
                                 .then((json) => {
+                                    console.log(json);
                                     this.mySubraces.push({ name: json.name, ability_bonuses: json.ability_bonuses });
                                 });
                         }
