@@ -7,6 +7,24 @@ ul {
     padding: 0px;
 }
 
+button {
+    padding: 5px;
+    color: black;
+    background-color: #f0f0f0;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+option {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+select {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
 .column {
     text-align: center;
 }
