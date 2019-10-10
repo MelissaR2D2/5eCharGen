@@ -76,6 +76,7 @@ var app = new Vue({
                 });
         },
         fetchSubraces() {
+            this.fail = false;
             console.log("it was called");
             this.mySubraces = [];
             for (let i = 0; i < this.myRaces.length; i++) {
@@ -127,7 +128,7 @@ var app = new Vue({
             var classOrder = this.stats_orders.filter((currClass) => {
                 return currClass.name === this.classSelection;
             });
-            var classOrder = classOrder[0].stats;
+            classOrder = classOrder[0].stats;
             console.log(classOrder);
             for (let i = 0; i < classOrder.length; i++) {
                 console.log(classOrder[i]);
