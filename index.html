@@ -51,10 +51,12 @@
                 <button v-on:click="calculateStats">Calculate Ability Scores</button>
             </p>
             <hr>
-            <p id="results">Ability Scores: </p>
-            <ul>
-                <li v-for="(score, stat) in charStats">{{ stat }} : {{ score }}</li>
-            </ul>
+            <p id="results-head">Ability Scores:</p>
+            <div id=results>
+                <ul>
+                    <li v-for="(score, stat) in charStats">{{ stat }}: {{ score }}</li>
+                </ul>
+            </div>
         </div>
         <div id="space"></div>
         <div id="footer">Website designed and created by Melissa Robertson and Tyla Merrill, October 2019. The D&D 5e API found <a href="https://web.archive.org/web/20120606024602/http://aterribleidea.com/108-terrible-character-portraits-gallery/">here</a> was used in

@@ -2,6 +2,10 @@ body {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
+ul {
+    list-style: none;
+    padding: 0px;
+}
 
 .column {
     text-align: center;
@@ -53,7 +57,13 @@ body {
     text-align: center;
 }
 
+#results-head {
+    display: none;
+    text-align: center;
+}
+
 #results {
+    display: none;
     text-align: center;
 }
 

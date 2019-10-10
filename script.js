@@ -138,6 +138,8 @@ var app = new Vue({
                 this.charStats[this.base_order[i]] += this.raceBonus[i];
                 this.charStats[this.base_order[i]] += this.subraceBonus[i];
             }
+            document.getElementById("results-head").style.display = "block";
+            document.getElementById("results").style.display = "block";
             console.log(this.raceBonus);
             console.log(this.subraceBonus);
             console.log(this.charStats);
