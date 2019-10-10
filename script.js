@@ -111,6 +111,7 @@ var app = new Vue({
         calculateStats() {
             if (this.raceSelection == "" || this.subraceSelection == "" || this.classSelection == "") {
                 alert("Please make sure you have selected a race, subrace, and class.");
+                return;
             }
             //changes bonus arrays to match racial bonuses
             for (let i = 0; i < this.myRaces.length; i++) {
@@ -144,6 +145,16 @@ var app = new Vue({
             console.log(this.subraceBonus);
             console.log(this.charStats);
 
+        },
+        reset() {
+            this.charStats = { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 };
+            this.classSelection = "";
+            this.raceSelection = "";
+            this.subraceSelection = "";
+            this.raceBonus = [0, 0, 0, 0, 0, 0];
+            this.subraceBonus = [0, 0, 0, 0, 0, 0];
+            document.getElementById("results-head").style.display = "none";
+            document.getElementById("results").style.display = "none";
         },
     },
     created: function() {
