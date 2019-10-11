@@ -72,6 +72,14 @@ select {
     background: #f0f0f0;
 }
 
+#class-info {
+    display:none;
+}
+
+#race-info {
+    display: none;
+}
+
 #submit {
     text-align: center;
 }

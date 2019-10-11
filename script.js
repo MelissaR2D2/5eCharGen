@@ -29,6 +29,7 @@ var app = new Vue({
         base_order: ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'],
         std_array: [15, 14, 13, 12, 10, 8],
         charStats: { STR: 0, DEX: 0, CON: 0, INT: 0, WIS: 0, CHA: 0 },
+        raceInfo: [],
     },
     methods: {
         fetchClasses() {
@@ -69,13 +70,14 @@ var app = new Vue({
                             })
                             .then((json) => {
                                 console.log(json);
-                                this.myRaces.push({ name: json.name, subraces: json.subraces, ability_bonuses: json.ability_bonuses });
+                                this.myRaces.push({ name: json.name, subraces: json.subraces, ability_bonuses: json.ability_bonuses, alignment: json.alignment, age: json.age, size: json.size_description });
                             });
 
                     }
                 });
         },
         fetchSubraces() {
+            this.displayRaceInfo();
             this.fail = false;
             console.log("it was called");
             this.mySubraces = [];
@@ -155,7 +157,21 @@ var app = new Vue({
             this.subraceBonus = [0, 0, 0, 0, 0, 0];
             document.getElementById("results-head").style.display = "none";
             document.getElementById("results").style.display = "none";
+            document.getElementById("race-info").style.display = "none";
         },
+        displayRaceInfo() {
+            for (let i = 0; i < this.myRaces.length; i++) {
+                if (this.myRaces[i].name == this.raceSelection) {
+                    let info = "";
+                    info += "Alignment: " + this.myRaces[i].alignment + "<br>";
+                    info += "Age: " + this.myRaces[i].age + "<br>";
+                    info += "Size: " + this.myRaces[i].size;
+                    document.getElementById("race-info").innerHTML = info;
+                    //this.raceInfo.push(info);
+                }
+            }
+            document.getElementById("race-info").style.display = "block";
+        }
     },
     created: function() {
         this.fetchClasses();
